@@ -18,11 +18,12 @@ const RESIDENTS = gql`
 export const ResidentsProvider = ({ children }) => {
   const [residentsMap, setResidentsMap] = useState({});
   const { loading, error, data } = useQuery(RESIDENTS, {
-    headers: {
-      authorization: `Bearer ${localStorage.getItem("token")}`,
+    context: {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
     },
   });
-  console.log(data);
 
   useEffect(() => {
     if (data) {

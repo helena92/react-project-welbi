@@ -6,7 +6,7 @@ export const ProgramsContext = createContext({
   programsMap: {},
 });
 
-const RESIDENTS = gql`
+const PROGRAMS = gql`
   {
     programs {
       name,
@@ -20,9 +20,11 @@ const RESIDENTS = gql`
 
 export const ProgramsProvider = ({ children }) => {
   const [programsMap, setProgramsMap] = useState({});
-  const { loading, error, data } = useQuery(RESIDENTS, {
-    headers: {
-      authorization: `Bearer ${localStorage.getItem("token")}`,
+  const { loading, error, data } = useQuery(PROGRAMS, {
+    context: {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
     },
   });
 

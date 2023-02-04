@@ -12,7 +12,7 @@ import './index.scss';
 import reportWebVitals from './reportWebVitals';
 
 const client = new ApolloClient({
-  uri: '/api/graphql/',
+  uri: '/api/graphql',
   cache: new InMemoryCache(),
 });
 
@@ -20,15 +20,15 @@ const rootElement = document.getElementById('root');
 
 render(
   <React.StrictMode>
-    <ApolloProvider client={client}>
-      <BrowserRouter>
-        <ResidentsProvider>
-          <ProgramsProvider>
-            <App />
-          </ProgramsProvider>
-        </ResidentsProvider>
-      </BrowserRouter>
-    </ApolloProvider>
+      <ApolloProvider client={client}>
+        <BrowserRouter>
+          <ResidentsProvider>
+            <ProgramsProvider>
+              <App />
+            </ProgramsProvider>
+          </ResidentsProvider>
+        </BrowserRouter>
+      </ApolloProvider>
   </React.StrictMode>,
   rootElement
 );

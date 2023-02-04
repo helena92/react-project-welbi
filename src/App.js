@@ -6,7 +6,7 @@ import ProgramsHome from './routes/programs-home/programs-home.components';
 
 const App = () => {
   const [token, setToken] = useState(null);
-
+  const email = process.env.REACT_APP_EMAIL;
   useEffect(() => {
     const fetchToken = async () => {
       const tokenFromStorage = localStorage.getItem('token');
@@ -20,7 +20,7 @@ const App = () => {
               'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-              email: 'elena.chornobai@gmail.com',
+              email,
             })
           });
           const { data } = await response.json();
