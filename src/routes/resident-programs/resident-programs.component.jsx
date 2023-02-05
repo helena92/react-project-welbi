@@ -1,6 +1,6 @@
 import { Fragment, useContext } from 'react';
 import { useParams } from 'react-router-dom';
-import ProgramCard from '../../components/program-card/program-card.component';
+import AttendanceRecord from '../../components/attendance-record/attendance-record.component';
 import { ProgramsContainer } from './resident-programs.styles';
 import { ProgramsContext } from '../../contexts/programs.context';
 
@@ -12,7 +12,7 @@ const ResidentPrograms = () => {
           <ProgramsContainer>
             {programs &&
               programs.map(({name, id}) => (
-                  <ProgramCard key={id} residentName={name} programId={id} residentId={residentId} />
+                  <AttendanceRecord key={id} residentName={name} programId={id} residentId={residentId} />
               ))}
           </ProgramsContainer>
         </Fragment>

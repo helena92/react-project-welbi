@@ -33,7 +33,7 @@ const App = () => {
     };
 
     fetchToken();
-  }, []);
+  }, [email]);
 
   return (
     <div>

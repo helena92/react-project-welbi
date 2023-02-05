@@ -2,6 +2,7 @@ import { useContext, Fragment } from 'react';
 
 import { ResidentsContext } from '../../contexts/residents.context';
 import ResidentPreview from '../../components/resident-preview/resident-preview.component';
+import Button from '../../components/button/button.component';
 import {
   NavLinks,
   NavLink,
@@ -12,7 +13,9 @@ const ResidentsPreview = () => {
   return (
     <Fragment>
       <NavLinks>
-        <NavLink to='/residents/add'>ADD RESIDENT</NavLink>
+        <NavLink to='/residents/add'>
+          <Button>ADD RESIDENT</Button>
+        </NavLink>
       </NavLinks>
       {Object.keys(ResidentsMap).map((id) => {
         const resident = ResidentsMap[id];
