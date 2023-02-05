@@ -20,12 +20,13 @@ const SET_ATTENDANCE = gql`
 `;
 
 const AttendanceRecord = ({ residentId, residentName, programId }) => {
+  // eslint-disable-next-line no-unused-vars
   const [input, setInput] = useState({
     status: 'Active',
     residentId,
     programId
   });
-
+  // eslint-disable-next-line no-unused-vars
   const [setAttendance, { data, loading, error }] = useMutation(SET_ATTENDANCE, {
     context: {
       headers: {

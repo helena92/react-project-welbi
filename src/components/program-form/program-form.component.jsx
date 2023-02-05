@@ -50,7 +50,7 @@ const ProgramForm = () => {
     const resetFormFields = () => {
         setFormFields(defaultFormFields);
     };
-
+    // eslint-disable-next-line no-unused-vars
     const [addProgram, { data, loading, error }] = useMutation(ADD_PROGRAM, {
         context: {
             headers: {

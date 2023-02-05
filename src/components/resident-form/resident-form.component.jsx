@@ -50,7 +50,7 @@ const ResidentForm = () => {
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
   };
-
+  // eslint-disable-next-line no-unused-vars
   const [addResident, { data, loading, error }] = useMutation(ADD_RESIDENT, {
     context: {
       headers: {
