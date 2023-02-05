@@ -2,9 +2,9 @@
 
 ## Setup
 To run the app in the development mode:
-1. Copy content from `.env.example` and rename it to `.env`. Insert correct values into placeholders.
+1. Create a new file `.env` and copy content from `.env.example` into it, insert values into placeholders.
 
-2. Run `yarn start` in the project directory .
+2. Run `yarn start` in the project directory.
 
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
