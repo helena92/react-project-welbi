@@ -9,7 +9,7 @@ export const ProgramPreviewContainer = styled.div`
 `;
 
 export const Title = styled(Link)`
-  font-size: 28px;
+  font-size: 18px;
   margin-bottom: 25px;
   cursor: pointer;
 `;

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const ProgramsContainer = styled.div`
+export const AttendanceContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   align-items: center;

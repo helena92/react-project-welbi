@@ -1,22 +1,22 @@
 import { Fragment, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import AttendanceRecord from '../../components/attendance-record/attendance-record.component';
-import { ProgramsContainer } from './resident-programs.styles';
+import { AttendanceContainer } from './attendance-home.styles';
 import { ProgramsContext } from '../../contexts/programs.context';
 
-const ResidentPrograms = () => {
+const AttendanceHome = () => {
   const programs = useContext(ProgramsContext);
   const { residentId } = useParams();
   return (
         <Fragment>
-          <ProgramsContainer>
+          <AttendanceContainer>
             {programs &&
               programs.map(({name, id}) => (
                   <AttendanceRecord key={id} residentName={name} programId={id} residentId={residentId} />
               ))}
-          </ProgramsContainer>
+          </AttendanceContainer>
         </Fragment>
   );
 };
 
-export default ResidentPrograms;
+export default AttendanceHome;

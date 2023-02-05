@@ -84,14 +84,8 @@ const ProgramForm = () => {
         }
     };
 
-    // const handleChange = (event) => {
-    //     const { name, value } = event.target;
-    //     setFormFields({ ...formFields, [name]: value });
-    // };
-
     const handleChange = ({ target: { name, value, type, checked } }) => {
         let formValue = value;
-        // if (event.target.name === "tags" || event.target.name === "facilitators" || event.target.name === "hobbies") {
         if (/^(?:tags|facilitators|hobbies)$/.test(name)) {
             formValue = value.split(",").map((item) => item.trim());
         } else if (type === "checkbox") {
