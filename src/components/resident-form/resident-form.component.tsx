@@ -1,12 +1,23 @@
 
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { gql, useMutation } from '@apollo/client';
 
 import FormInput from '../form-input/form-input.component';
 import Button from '../button/button.component';
 
 import { ResidentFormContainer } from './resident-form.styles';
 
-import { gql, useMutation } from '@apollo/client';
+interface FormFields {
+  firstName: string;
+  lastName: string;
+  preferredName: string;
+  status: string;
+  room: string;
+  ambulation: string;
+  levelOfCare: string;
+  birthDate: string;
+  moveInDate: string;
+}
 
 const defaultFormFields = {
   firstName: '',
@@ -27,34 +38,35 @@ const ADD_RESIDENT = gql`
   mutation createResident($input: ResidentInput!) {
     createResident(input: $input) {
       id,
-    name,
-    preferredName,
-    status,
-    firstName,
-    lastName,
-    room,
-    birthDate,
-    moveInDate,
-    createdAt,
-    updatedAt,
-    ambulation,
-    levelOfCare
+      name,
+      preferredName,
+      status,
+      firstName,
+      lastName,
+      room,
+      birthDate,
+      moveInDate,
+      createdAt,
+      updatedAt,
+      ambulation,
+      levelOfCare
     }
-}`
+  }
+`;
 
-const ResidentForm = () => {
-  const [formFields, setFormFields] = useState(defaultFormFields);
+const ResidentForm: React.FC = () => {
+  const [formFields, setFormFields] = useState<FormFields>(defaultFormFields);
   const { firstName, lastName, preferredName, status, room, birthDate, moveInDate, ambulation, levelOfCare } = formFields;
-  const [err, setError] = useState("");
+  const [err, setError] = useState<string | undefined>(undefined);
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
   };
-  // eslint-disable-next-line no-unused-vars
-  const [addResident, { data, loading, error }] = useMutation(ADD_RESIDENT, {
+  // eslint-disable-next-line 
+  const [addResident, { data, loading, error: mutationError }] = useMutation(ADD_RESIDENT, {
     context: {
       headers: {
-        authorization: `Bearer ${localStorage.getItem("token")}`,
+        authorization: `Bearer ${localStorage.getItem('token')}`,
       },
     },
   });
@@ -64,22 +76,22 @@ const ResidentForm = () => {
   };
 
   if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
+  if (mutationError) return <p>Error: {mutationError.message}</p>;
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     if (!allowedAmbulationValues.includes(ambulation)) {
-      setError("Error: Ambulation value must be one of " + allowedAmbulationValues.join(", "));
-      return null;
+      setError(`Error: Ambulation value must be one of ${allowedAmbulationValues.join(', ')}`);
+      return;
     }
 
     if (!allowedLevelOfCareValues.includes(levelOfCare)) {
-      setError("Error: Level of Care value must be one of " + allowedLevelOfCareValues.join(", "));
-      return null;
+      setError(`Error: Level of Care value must be one of ${allowedLevelOfCareValues.join(', ')}`);
+      return;
     }
 
-    setError("");
+    setError('');
 
     try {
       createResident();
@@ -87,9 +99,10 @@ const ResidentForm = () => {
     } catch (error) {
       console.error(error);
     }
-  };
+  }
 
-  const handleChange = (event) => {
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setFormFields({ ...formFields, [name]: value });
   };
@@ -99,73 +112,73 @@ const ResidentForm = () => {
       <h2>Create a new resident</h2>
       <form onSubmit={handleSubmit}>
         <FormInput
-          label='First Name'
-          type='text'
+          label="First Name"
+          type="text"
           required
           onChange={handleChange}
-          name='firstName'
-          value={firstName}
+          name="firstName"
+          value={formFields.firstName}
         />
 
         <FormInput
-          label='Last Name'
-          type='text'
+          label="Last Name"
+          type="text"
           required
           onChange={handleChange}
-          name='lastName'
+          name="lastName"
           value={lastName}
         />
 
         <FormInput
-          label='Preferred Name'
-          type='text'
+          label="Preferred Name"
+          type="text"
           required
           onChange={handleChange}
-          name='preferredName'
+          name="preferredName"
           value={preferredName}
         />
 
         <FormInput
-          label='Status'
-          type='text'
+          label="Status"
+          type="text"
           onChange={handleChange}
-          name='status'
+          name="status"
           value={status}
         />
 
         <FormInput
-          label='Room'
-          type='text'
+          label="Room"
+          type="text"
           required
           onChange={handleChange}
-          name='room'
+          name="room"
           value={room}
         />
 
         <FormInput
-          label='Ambulation'
-          type='text'
+          label="Ambulation"
+          type="text"
           required
           onChange={handleChange}
-          name='ambulation'
+          name="ambulation"
           value={ambulation}
         />
 
         <FormInput
-          label='Level Of Care'
-          type='text'
+          label="Level Of Care"
+          type="text"
           required
           onChange={handleChange}
-          name='levelOfCare'
+          name="levelOfCare"
           value={levelOfCare}
         />
 
         <FormInput
-          label='Birth Date'
-          type='date'
+          label="Birth Date"
+          type="date"
           required
           onChange={handleChange}
-          name='birthDate'
+          name="birthDate"
           value={birthDate}
         />
 

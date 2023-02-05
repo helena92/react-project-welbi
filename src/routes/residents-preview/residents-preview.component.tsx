@@ -1,15 +1,11 @@
-import { useContext, Fragment } from 'react';
-
+import React, { useContext, Fragment } from 'react';
+import { NavLinks, NavLink } from './residents-preview.styles';
 import { ResidentsContext } from '../../contexts/residents.context';
-import ResidentPreview from '../../components/resident-preview/resident-preview.component';
 import Button from '../../components/button/button.component';
-import {
-  NavLinks,
-  NavLink,
-} from './residents-preview.styles';
+import ResidentPreview from '../../components/resident-preview/resident-preview.component';
 
-const ResidentsPreview = () => {
-  const ResidentsMap = useContext(ResidentsContext);
+const ResidentsPreview: React.FC = () => {
+  const { residentsMap } = useContext(ResidentsContext);
   return (
     <Fragment>
       <NavLinks>
@@ -17,8 +13,8 @@ const ResidentsPreview = () => {
           <Button>ADD RESIDENT</Button>
         </NavLink>
       </NavLinks>
-      {Object.keys(ResidentsMap).map((id) => {
-        const resident = ResidentsMap[id];
+      {Object.keys(residentsMap).map((id) => {
+        const resident = residentsMap[id];
         return (
           <ResidentPreview key={id} id={id} resident={resident} />
         );

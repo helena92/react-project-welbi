@@ -4,7 +4,7 @@ module.exports = function(app) {
   app.use(
     '/api/graphql/',
     createProxyMiddleware({
-      target: 'https://welbi.org',
+      target: process.env.REACT_APP_GRAPHQL_API_URL,
       changeOrigin: true,
     })
   );

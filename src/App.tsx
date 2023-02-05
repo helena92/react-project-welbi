@@ -4,9 +4,10 @@ import Navigation from './routes/navigation/navigation.component';
 import ResidentsHome from './routes/residents-home/residents-home.component';
 import ProgramsHome from './routes/programs-home/programs-home.components';
 
-const App = () => {
-  const [token, setToken] = useState(null);
-  const email = process.env.REACT_APP_EMAIL;
+const App: React.FC = () => {
+  const [token, setToken] = useState<string|null>(null);
+  const email = process.env.REACT_APP_EMAIL as string;
+  const graphqlUri = process.env.REACT_APP_GRAPHQL_API_URL as string;
   useEffect(() => {
     const fetchToken = async () => {
       const tokenFromStorage = localStorage.getItem('token');
@@ -14,7 +15,7 @@ const App = () => {
         setToken(tokenFromStorage);
       } else {
         try {
-          const response = await fetch('https://welbi.org/api/start', {
+          const response = await fetch(`${graphqlUri}/api/start`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
@@ -31,9 +32,8 @@ const App = () => {
         }
       }
     };
-
     fetchToken();
-  }, [email]);
+  }, [email, graphqlUri]);
 
   return (
     <div>

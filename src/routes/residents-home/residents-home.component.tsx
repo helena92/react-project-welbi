@@ -4,7 +4,7 @@ import ResidentsPreview from '../residents-preview/residents-preview.component';
 import AttendanceHome from '../attendance-home/attendance-home.component';
 import ResidentCreation from '../resident-creation/resident-creation.component';
 
-const ResidentsHome = () => {
+const ResidentsHome: React.FC = () => {
   return (
     <Routes>
       <Route index element={<ResidentsPreview />} />

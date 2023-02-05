@@ -1,6 +1,6 @@
 import ResidentForm from '../../components/resident-form/resident-form.component';
 
-const ResidentCreation = () => {
+const ResidentCreation: React.FC = () => {
   return (
     <ResidentForm/>
   );

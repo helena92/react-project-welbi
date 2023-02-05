@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
-export const BaseButton = styled.button`
+interface BaseButtonProps {
+  buttonType?: 'base' | 'inverted';
+}
+
+export const BaseButton = styled.button<BaseButtonProps>`
   min-width: 165px;
   width: auto;
   height: 50px;

@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import ProgramsPreview from '../programs-preview/programs-preview.component';
 import ProgramCreation from '../programs-creation/programs-creation.component';
 
-const ProgramsHome = () => {
+const ProgramsHome: React.FC = () => {
   return (
     <Routes>
       <Route index element={<ProgramsPreview />} />
