@@ -2,7 +2,7 @@
 
 ## Setup
 To run the app in the development mode:
-1. Create a new file `.env` and copy content from `.env.example` into it, insert values into placeholders.
+1. Create a new file `.env` in the root directory and copy content from `.env.example` file into it, insert values into placeholders.
 
 2. Run `yarn start` in the project directory.
 
