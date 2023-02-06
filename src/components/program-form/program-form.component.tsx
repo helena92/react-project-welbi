@@ -53,7 +53,7 @@ const ADD_PROGRAM = gql`
 
 const ProgramForm: React.FC = () => {
   const [formFields, setFormFields] = useState<FormFields>(defaultFormFields);
-  const [err, setError] = useState("");
+  const [err, setError] = useState<string>('');
 
   const { name, location, allDay, isRepeated, tags, start, end, dimension, facilitators, levelOfCare, hobbies } = formFields;
 
@@ -213,7 +213,7 @@ const ProgramForm: React.FC = () => {
         />
 
         {err && <div style={{ color: "red" }}>{err}</div>}
-        
+
         <Button type='submit'>Submit</Button>
       </form>
     </ProgramFormContainer>

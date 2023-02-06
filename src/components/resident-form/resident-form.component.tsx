@@ -71,7 +71,7 @@ const ADD_RESIDENT = gql`
 const ResidentForm: React.FC = () => {
   const [formFields, setFormFields] = useState<FormFields>(defaultFormFields);
   const { firstName, lastName, preferredName, status, room, birthDate, moveInDate, ambulation, levelOfCare } = formFields;
-  const [err, setError] = useState<string | undefined>(undefined);
+  const [err, setError] = useState<string>('');
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
@@ -207,7 +207,7 @@ const ResidentForm: React.FC = () => {
         />
 
         {err && <div style={{ color: "red" }}>{err}</div>}
-        
+
         <Button type='submit'>Submit</Button>
       </form>
     </ResidentFormContainer>
