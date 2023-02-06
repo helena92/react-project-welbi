@@ -206,8 +206,9 @@ const ResidentForm: React.FC = () => {
           value={moveInDate}
         />
 
-        <Button type='submit'>Submit</Button>
         {err && <div style={{ color: "red" }}>{err}</div>}
+        
+        <Button type='submit'>Submit</Button>
       </form>
     </ResidentFormContainer>
   );

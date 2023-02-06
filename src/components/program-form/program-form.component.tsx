@@ -212,8 +212,9 @@ const ProgramForm: React.FC = () => {
           value={end}
         />
 
-        <Button type='submit'>Submit</Button>
         {err && <div style={{ color: "red" }}>{err}</div>}
+        
+        <Button type='submit'>Submit</Button>
       </form>
     </ProgramFormContainer>
   );
