@@ -1,7 +1,8 @@
 import styled from 'styled-components';
+import { BUTTON_TYPE_CLASSES } from './button.component'
 
 interface BaseButtonProps {
-  buttonType?: 'base' | 'inverted';
+  buttonType?: BUTTON_TYPE_CLASSES.base | BUTTON_TYPE_CLASSES.inverted;
 }
 
 export const BaseButton = styled.button<BaseButtonProps>`

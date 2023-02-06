@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { gql, useMutation } from '@apollo/client';
-import Button from '../button/button.component';
+import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component';
 import { ProgramTitle } from './attendance-record.styles';
 
 const SET_ATTENDANCE = gql`
@@ -80,7 +80,7 @@ const AttendanceRecord: React.FC<AttendanceRecordProps> = ({ residentId, residen
     <ProgramTitle key={programId}>
       {residentName}
       <Button
-        buttonType="inverted"
+        buttonType={BUTTON_TYPE_CLASSES.inverted}
         onClick={attendProgram}
       >
         Attend program

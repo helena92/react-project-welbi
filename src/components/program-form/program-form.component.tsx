@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { gql, useMutation } from '@apollo/client';
-
+import { LEVELS_OF_CARE, LevelOfCare } from '../resident-form/resident-form.component';
 import FormInput from '../form-input/form-input.component';
 import Button from '../button/button.component';
 import { ProgramFormContainer } from './program-form.styles';
@@ -15,7 +15,7 @@ interface FormFields {
   end: string;
   dimension: string;
   facilitators: string[];
-  levelOfCare: string;
+  levelOfCare: LevelOfCare;
   hobbies: string[];
 }
 
@@ -32,8 +32,6 @@ const defaultFormFields: FormFields = {
   levelOfCare: '',
   hobbies: [],
 };
-
-const allowedLevelOfCareValues = ["INDEPENDENT", "ASSISTED", "MEMORY", "LONGTERM"];
 
 const ADD_PROGRAM = gql`
   mutation createProgram($input: ProgramInput!) {
@@ -80,9 +78,10 @@ const ProgramForm: React.FC = () => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const levelsOfCare = Object.keys(LEVELS_OF_CARE);
 
-    if (!allowedLevelOfCareValues.includes(levelOfCare)) {
-      setError(`Error: Level of Care value must be one of ${allowedLevelOfCareValues.join(", ")}`);
+    if (!levelsOfCare.includes(levelOfCare)) {
+      setError(`Error: Level of Care value must be one of ${levelsOfCare.join(", ")}`);
       return;
     }
 

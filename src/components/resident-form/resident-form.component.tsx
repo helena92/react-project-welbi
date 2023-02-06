@@ -7,19 +7,36 @@ import Button from '../button/button.component';
 
 import { ResidentFormContainer } from './resident-form.styles';
 
+export enum LEVELS_OF_CARE {
+  INDEPENDENT = 'INDEPENDENT',
+  ASSISTED = 'ASSISTED',
+  MEMORY = 'MEMORY',
+  LONGTERM = 'LONGTERM',
+}
+
+export enum AMBULATION {
+  NOLIMITATIONS = 'NOLIMITATIONS',
+  CANE = 'CANE',
+  WALKER = 'WALKER',
+  WHEELCHAIR = 'WHEELCHAIR',
+}
+
+export type LevelOfCare = keyof typeof LEVELS_OF_CARE | '';
+type Ambulation = keyof typeof AMBULATION | '';
+
 interface FormFields {
   firstName: string;
   lastName: string;
   preferredName: string;
   status: string;
   room: string;
-  ambulation: string;
-  levelOfCare: string;
+  ambulation: Ambulation;
+  levelOfCare: LevelOfCare;
   birthDate: string;
   moveInDate: string;
 }
 
-const defaultFormFields = {
+const defaultFormFields: FormFields = {
   firstName: '',
   lastName: '',
   preferredName: '',
@@ -30,9 +47,6 @@ const defaultFormFields = {
   ambulation: '',
   levelOfCare: ''
 };
-
-const allowedAmbulationValues = ["NOLIMITATIONS", "CANE", "WALKER", "WHEELCHAIR"];
-const allowedLevelOfCareValues = ["INDEPENDENT", "ASSISTED", "MEMORY", "LONGTERM"];
 
 const ADD_RESIDENT = gql`
   mutation createResident($input: ResidentInput!) {
@@ -80,14 +94,16 @@ const ResidentForm: React.FC = () => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const ambulationValues = Object.keys(AMBULATION);
+    const levelsOfCare = Object.keys(LEVELS_OF_CARE);
 
-    if (!allowedAmbulationValues.includes(ambulation)) {
-      setError(`Error: Ambulation value must be one of ${allowedAmbulationValues.join(', ')}`);
+    if (!ambulationValues.includes(ambulation)) {
+      setError(`Error: Ambulation value must be one of ${ambulationValues.join(", ")}`);
       return;
     }
 
-    if (!allowedLevelOfCareValues.includes(levelOfCare)) {
-      setError(`Error: Level of Care value must be one of ${allowedLevelOfCareValues.join(', ')}`);
+    if (!levelsOfCare.includes(levelOfCare)) {
+      setError(`Error: Level of Care value must be one of ${levelsOfCare.join(", ")}`);
       return;
     }
 
@@ -100,7 +116,6 @@ const ResidentForm: React.FC = () => {
       console.error(error);
     }
   }
-
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
